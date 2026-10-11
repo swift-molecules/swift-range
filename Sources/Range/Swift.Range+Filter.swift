@@ -13,13 +13,13 @@ extension Swift.Range where Bound: Strideable, Bound.Stride: SignedInteger {
 extension Property {
 
     @inlinable
-    public func callAsFunction<Bound: Strideable, E: Swift.Error>(
+    public func callAsFunction<Bound: Strideable, E: Swift::Error>(
         _ isIncluded: (Bound) throws(E) -> Bool
     ) throws(E) -> [Bound]
     where
         Bound.Stride: SignedInteger,
-        Tag == Swift.Range<Bound>.Filter,
-        Base == Swift.Range<Bound>
+        Tag == Swift::Range<Bound>.Filter,
+        Base == Swift::Range<Bound>
     {
         var result: [Bound] = []
         var i = base.lowerBound

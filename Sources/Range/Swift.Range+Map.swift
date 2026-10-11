@@ -8,7 +8,7 @@ extension Swift.Range {
 extension Swift.Range {
 
     @inlinable
-    public var map: Property<Map, Swift.Range<Bound>> {
+    public var map: Property<Map, Swift::Range<Bound>> {
         Property(self)
     }
 }
@@ -18,8 +18,8 @@ extension Property {
     @inlinable
     public func bounds<Bound: Comparable, T: Comparable>(
         _ transform: (Bound) -> T
-    ) -> Swift.Range<T>
-    where Tag == Swift.Range<Bound>.Map, Base == Swift.Range<Bound> {
+    ) -> Swift::Range<T>
+    where Tag == Swift::Range<Bound>.Map, Base == Swift::Range<Bound> {
         transform(base.lowerBound)..<transform(base.upperBound)
     }
 }
@@ -27,13 +27,13 @@ extension Property {
 extension Property {
 
     @inlinable
-    public func callAsFunction<Bound: Strideable, T, E: Swift.Error>(
+    public func callAsFunction<Bound: Strideable, T, E: Swift::Error>(
         _ transform: (Bound) throws(E) -> T
     ) throws(E) -> [T]
     where
         Bound.Stride: SignedInteger,
-        Tag == Swift.Range<Bound>.Map,
-        Base == Swift.Range<Bound>
+        Tag == Swift::Range<Bound>.Map,
+        Base == Swift::Range<Bound>
     {
         var result: [T] = []
         result.reserveCapacity(base.count)

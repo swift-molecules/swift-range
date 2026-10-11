@@ -40,19 +40,19 @@ let package = Package(
         ),
         .target(
             name: "Range Standard Library Integration",
-            dependencies: ["Range"]
+            dependencies: [.target(name: "Range")]
         ),
         .target(
             name: "Range Apple Foundation Integration",
             dependencies: [
-                "Range",
-                "Range Standard Library Integration",
+                .target(name: "Range"),
+                .target(name: "Range Standard Library Integration"),
             ]
         ),
         .testTarget(
             name: "Range Tests",
             dependencies: [
-                "Range"
+                .target(name: "Range")
             ]
         ),
     ],
@@ -60,17 +60,14 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+    target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableExperimentalFeature("Lifetimes"),
+        .treatAllWarnings(as: .error),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

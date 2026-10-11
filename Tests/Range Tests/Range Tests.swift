@@ -1,7 +1,7 @@
 internal import Range
 import Testing
 
-enum Fault: Swift.Error, Equatable {
+enum Fault: Swift::Error, Equatable {
     case oops(Int)
 }
 
@@ -43,8 +43,8 @@ extension `Range Tests`.Unit {
 
     @Test
     func `map.bounds transforms both endpoints`() {
-        let r: Swift.Range<Int> = 0..<3
-        let doubled: Swift.Range<Int> = r.map.bounds { $0 * 2 }
+        let r: Swift::Range<Int> = 0..<3
+        let doubled: Swift::Range<Int> = r.map.bounds { $0 * 2 }
         #expect(doubled.lowerBound == 0)
         #expect(doubled.upperBound == 6)
     }

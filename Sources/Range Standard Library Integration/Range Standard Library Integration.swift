@@ -1,1 +1,1 @@
-public import Range
+internal import Range

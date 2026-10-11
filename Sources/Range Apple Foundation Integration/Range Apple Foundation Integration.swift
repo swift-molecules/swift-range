@@ -1,3 +1,3 @@
-public import Range
-public import Range_Standard_Library_Integration
-public import Foundation
+internal import Range
+internal import Range_Standard_Library_Integration
+internal import Foundation
